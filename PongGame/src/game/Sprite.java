@@ -4,103 +4,85 @@ import java.awt.Color;
 import java.awt.Rectangle;
 
 public class Sprite {
-	private int xPos;
-	private int yPos;
-	private int xVel;
-	private int yVel;
-	private int width;
-	private int height;
-	private Color colour;
-	private int initialxPosition;
-	private int initialyPosition;
-
-	public int getXPos() {
-		return xPos;
+	
+    private int xPosition, yPosition;
+    private int xVelocity, yVelocity;
+    private int width, height;
+    private Color colour;
+    private int initialXPosition, initialYPosition;
+    
+    
+	public int getxPosition() {
+		return xPosition;
+	}
+	public void setxPosition(int xPosition) {
+		this.xPosition = xPosition;
+	}
+	public int getyPosition() {
+		return yPosition;
+	}
+	public void setyPosition(int yPosition) {
+		this.yPosition = yPosition;
 	}
 	
-	public void setXPos(int xPos) {
-		this.xPos = xPos;
+	 public void setxPosition(int newX, int panelWidth) {
+	       xPosition = newX;
+	       if(xPosition < 0) {
+	           xPosition = 0;
+	       } else if(xPosition + width > panelWidth) {
+	           xPosition = panelWidth - width;
+	       }
+	 }
+	 public void setyPosition(int newY, int panelHeight) {
+	      yPosition = newY;
+	      if(yPosition < 0) {
+	          yPosition = 0;
+	      } else if(yPosition + height > panelHeight) {
+	          yPosition = panelHeight - height;
+	      }
+	 }
+	public int getxVelocity() {
+		return xVelocity;
 	}
-	
-	public void setXPos(int newX, int panelWidth) {
-		xPos = newX;
-		if (xPos < 0) {
-			xPos = 0;
-		}else if (xPos + width > panelWidth) {
-			xPos = panelWidth - width;
-		}
+	public void setxVelocity(int xVelocity) {
+		this.xVelocity = xVelocity;
 	}
-	
-	public int getYPos() {
-		return yPos;
+	public int getyVelocity() {
+		return yVelocity;
 	}
-	
-	public void setYPos(int yPos) {
-		this.yPos = yPos;
+	public void setyVelocity(int yVelocity) {
+		this.yVelocity = yVelocity;
 	}
-	
-	public void setYPos(int newY, int panelHeight) {
-		yPos = newY;
-		if (yPos < 0) {
-			yPos = 0;
-		}else if (yPos + height > panelHeight) {
-			yPos = panelHeight - height;
-		}
-	}
-	
-	public int getXVel() {
-		return xVel;
-	}
-	
-	public void setXVel(int xVel) {
-		this.xVel = xVel;
-	}
-	
-	public int getYVel() {
-		return yVel;
-	}
-	
-	public void setYVel(int yVel) {
-		this.yVel = yVel;
-	}
-	
 	public int getWidth() {
 		return width;
 	}
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
 	public int getHeight() {
 		return height;
 	}
-	
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
 	public Color getColour() {
 		return colour;
 	}
-	
 	public void setColour(Color colour) {
 		this.colour = colour;
 	}
 	
-	public void setInitialxPosition(int initialxPosition) {
-		this.initialxPosition = initialxPosition;
+	public void setInitialPosition(int initialX, int initialY) {
+		initialYPosition = initialY;
+		initialXPosition= initialX;
+		
 	}
-	
-	public void setInitialyPosition(int initialyPosition) {
-		this.initialyPosition = initialyPosition;
-	}
-	
 	public void resetToInitialPosition() {
-		setXPos(initialxPosition);
-		setYPos(initialyPosition);
-	}
-	
+        setxPosition(initialXPosition);
+        setyPosition(initialYPosition);
+    }
+
 	public Rectangle getRectangle() {
-		return new Rectangle(getXPos(), getYPos(), getWidth(), getHeight());
-	}
+        return new Rectangle(getxPosition(), getyPosition(), getWidth(), getHeight());
+    }
 }
